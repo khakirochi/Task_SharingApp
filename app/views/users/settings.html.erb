@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-2">
+    <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" data-toggle="pill" href="#my-account" role="tab" aria-controls="my-account" aria-selected="true">アカウント</a>
+      <a class="nav-link" data-toggle="pill" href="#my-profile" role="tab" aria-controls="my-profile" aria-selected="false">プロフィール</a>
+    </div>
+  </div>
+  <div class="col-10 border-left" style="height:100vh;">
+    <div class="tab-content">
+      <div class="tab-pane show active" id="my-account" role="tabpanel" aria-labelledby="my-account-tab">
+        <!--my account-->
+        <%= render "shared/account", obj: @user %>        
+      </div>
+      <div class="tab-pane" id="my-profile" role="tabpanel" aria-labelledby="my-profile-tab">
+        <!--my profile-->
+        <%= render "shared/profile", obj: @user %>        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<% img_class = "rounded-circle user_profile_img" %>
+<% if obj.user_img? %>
+  <%= image_tag obj.user_img.url, class: img_class %>
+<% else %>
+  <%= image_tag "/assets/default_user_img.png", class: img_class %>
+<% end %>

@@ -1,0 +1,31 @@
+<h1>予約情報編集</h1>
+
+<%= render "shared/errors", obj: @reservation %>
+
+
+<%= form_with model: @reservation, local:true, method: "patch" do |f| %>
+
+
+  <div class="form-group">
+    <label>開始日</label>
+    <%= f.date_field :start_date, :placeholder => "開始日を指定",class: "form-control"%>
+  </div>
+  
+  <div class="form-group">
+    <label>終了日</label> 
+    <%= f.date_field :end_date, :placeholder => "終了日を指定", class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <label>利用人数</label>
+    <%= f.number_field :total_users, :placeholder => "利用人数を入力", class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <label>room_id</label>    
+    <%= f.number_field :room_id, class: "form-control"%>
+  </div>
+
+  <%= f.submit "予約情報更新", class: "btn btn-primary" %>
+  
+<% end %>

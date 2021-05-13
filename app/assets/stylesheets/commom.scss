@@ -1,0 +1,70 @@
+
+.img-caption {
+  color: #d3d3d3;
+}
+
+.top-main {
+  width: 100%;
+  height: 600px;
+  background-image:image-url('top.jpg');
+  background-size:cover;
+}
+
+.top-form {
+  background-color:#ffffff;
+  margin-top: 100px;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+.top-form p {
+  font-size: 32px;
+}
+
+.field_with_errors input {
+  background-color:#f8d7da;
+  border-color:#721c24;
+}
+
+/*user icon in nav header*/
+.header_user_img {
+  width: 56px;
+  height: 56px;
+  object-fit:cover;
+  margin:0 10px;
+}
+
+.header_user_name {
+  color: #808080;
+}
+
+/*room image in show.html*/
+.room_img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.room_user_img {
+  width:  100%;
+  object-fit: cover;
+  margin: 20px 0;
+}
+
+.room_name_address {
+  margin-top: 20px;
+}
+
+/*user's profile image*/
+.user_profile_img {
+  width:  250px;
+  height: 250px;
+  object-fit: cover;
+  border:1px solid #dcdcdc;
+}
+
+/*error messages*/
+.partial_errors {
+  color:#cd5c5c;
+  /*color: #721c24;*/
+  font-size: 20px;
+}

@@ -1,0 +1,18 @@
+<div class="top-main">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6  top-form">
+      <p>ルームをおすすめのエリアから検索</p>
+      <%= form_with method: "get", url: rooms_path, local: true  do |f| %>
+        <div class="form-group">
+          <label>エリア</label>
+          <%= f.select :area, ["東京", "大阪", "京都", "札幌"], {include_blank: '選択してください'}, class:"form-control" %>
+        </div>
+        <%= f.submit "探す", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+<a href='https://jp.freepik.com/photos/flower' class="img-caption">Kjpargeter - jp.freepik.com によって作成された flower 写真</a>
+

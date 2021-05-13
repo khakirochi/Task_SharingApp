@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-8 h1">ルーム一覧</div>
+  <div class="col h4 mt-3">検索結果：<%= @rooms.length %>件</div>
+</div>
+<table class="table table-striped">
+  <tr>
+    <th>ルーム名</th>
+    <th>住所</th>
+    <th>価格</th>
+    <th>詳細</th>
+  </tr>
+  <% @rooms.each do |room| %>
+  <tr>
+    <td><%= room.room_name %></td>
+    <td><%= room.room_address %></td>
+    <td>&yen;<%= room.room_fee%></td>
+    <td><%= link_to "詳細", room_path(room), class: "btn btn-info" %></td>
+  </tr>
+  <% end %>
+</table>

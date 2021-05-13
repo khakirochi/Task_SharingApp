@@ -1,0 +1,22 @@
+<h1>ログイン</h1>
+
+<% if @error_message %>
+<div class="partial_errors">
+  <p><%= @error_message %></p>
+</div>
+<% end %>
+
+<%= form_with url: signin_path, local: true do |f| %>
+<div class="form-group">
+  <label>メールアドレス</label>
+  <%= f.text_field :email, :place_holder => "メールアドレス", class: "form-control" %>
+</div>
+
+<div class="form-group">
+  <label>パスワード</label>
+  <%= f.password_field :password, :place_holder => "パスワード", class: "form-control" %>
+</div>
+
+<%= f.submit "ログイン", class: "btn btn-primary" %>
+
+<% end %>

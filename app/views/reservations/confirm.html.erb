@@ -1,0 +1,46 @@
+<h1>予約確認</h1>
+
+<div class="border-bottom mb-3 mt-3">
+  <p>合計金額：<span class="h1">&yen;<%= @reservation.total_fee%></span></p>
+</div>
+
+<div class="border-bottom mb-3 mt-3">
+  <p class="h3"><%= @room.room_name %></p>
+  <p class="h5"><%= @room.room_address %></p>
+</div>
+
+<%= form_with model: @reservation, local: true do |f| %>
+  <div class="form-group">
+    <label>開始日</label>
+    <%= f.date_field :start_date, value: @reservation.start_date, readonly: true, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <label>終了日</label> 
+    <%= f.date_field :end_date, value: @reservation.end_date, readonly: true, class: "form-control readonly" %>
+  </div>
+
+
+  <div class="form-group">
+    <label>利用人数</label>
+    <%= f.number_field :total_users, value: @reservation.total_users, readonly: true, class: "form-control readonly"%>
+  </div>
+<div class="border-top border-bottom mb-3 pt-3">
+  <p>利用料(1日): &yen;<%= @room.room_fee %></p>
+  <p>利用日数:    <%= @reserved_days.to_i %></p>
+</div>
+
+  <div class="form-group">
+    <label>合計金額</label>
+    <%= f.number_field :total_fee, value: @reservation.total_fee, readonly: true, class: "form-control readonly"%>
+  </div>
+
+
+  <%= f.hidden_field :room_id, value: @room.id %>
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
+
+
+  <%= f.submit "予約を確定する", class: "btn btn-primary" %>
+  <%= link_to "ルーム詳細に戻る", room_path(@reservation.room_id), class: "btn btn-secondary"%>
+<% end %>
+
