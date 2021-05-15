@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :email, presence:true, uniqueness: true
   #validates :password_digest, presence: true
   validates :password, presence: true, length: {minimum: 8}, format: {with: PASSWORD_FORMAT}, if: :validate_password?
-  validates :user_intro, presence: true, length: {maximum: 140}
+  validates :user_intro, length: {maximum: 140}
   
   def validate_password?
     password.present? || password_confirmation.present?
