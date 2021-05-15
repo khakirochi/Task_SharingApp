@@ -16,6 +16,7 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     redirect_invalid_owner(@reservation)
+    
     if @reservation.save
       flash[:notice] = "ルーム予約に成功しました"
       redirect_to reservations_path
@@ -28,6 +29,7 @@ class ReservationsController < ApplicationController
   def confirm
     @reservation = Reservation.new(reservation_params)
     redirect_invalid_owner(@reservation)
+    
     @room = Room.find(reservation_params[:room_id])
     @reserved_days = get_reserved_days(reservation_params)
     
@@ -44,6 +46,7 @@ class ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     redirect_invalid_owner(@reservation)
+    
     if @reservation.update(reservation_params)
       flash[:notice] = "ルーム予約情報更新に成功しました"
       redirect_to reservations_path
@@ -56,6 +59,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     redirect_invalid_owner(@reservation)
+    
     @reservation.destroy
     flash[:notice]="予約を取り消しました"
     redirect_to reservations_path

@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   end
   
   def create
-    user_params = params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
-    @user = User.new(user_params)
+    #user_params = params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
+    @user = User.new(new_user_params)
     
     if @user.save
       flash[:notice] = "新規アカウントを作成しました"
@@ -89,5 +89,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation, :password_previous)
   end
 
+  def new_user_params
+    params.require(:user).permit(:user_name, :email, :password, :password_confirmation)
+  end
 
 end

@@ -3,12 +3,14 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
-
+    
+    # area search
     if params[:area].present?
       area_ptn = "%#{params[:area]}%"
       @rooms = @rooms.where("room_address like ?", area_ptn)
     end
     
+    # keyword search
     if params[:keyword].present?
       keyword_ptn = "%#{params[:keyword]}%"
       @rooms = @rooms.where("room_name like ? OR room_intro like ?", keyword_ptn, keyword_ptn) 
@@ -57,15 +59,23 @@ class RoomsController < ApplicationController
   def destroy
     @room = Room.find(params[:id])
     redirect_invalid_owner(@room)
-    @room.destroy
-    flash[:notice]="削除しました"
-    redirect_to rooms_path
+    
+    
+    if is_reserved_by_others?(@room)
+      flash.now[:alert] = "予約されているため，削除できませんでした"
+      render :edit
+    else
+      rsrvs = Reservation.where(room_id: @room.id)
+      @room.destroy
+      rsrvs.map(&:destroy)  #remove linked reservations
+      flash[:notice]="削除しました"
+      redirect_to rooms_path
+    end
   end
   
   def myrooms
     @myrooms = Room.where(user_id: session[:user_id])
   end
-
   
   private
   
@@ -81,6 +91,14 @@ class RoomsController < ApplicationController
     
     room_params[:user_id] = session[:user_id]
     room_params
+  end
+  
+  def is_reserved_by_others?(room)
+    Reservation
+      .where(room_id: @room.id)
+      .where.not(user_id: @room.user_id)
+      .where("end_date >= ?", Date.current)
+      .length > 0
   end
   
 end

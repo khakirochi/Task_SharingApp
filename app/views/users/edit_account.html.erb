@@ -1,6 +1,5 @@
 <h2>アカウント編集</h2>
 
-
 <% if @error_message %>
 <div class="partial_errors">
   <%= @error_message %>
@@ -17,13 +16,13 @@
   </div>
   
   <div class="form_group mt-3">
-    <label class="h5">新しいパスワード</label>
-    <%= f.password_field :password, class: "form-control" %>
+    <label class="h5">新しいパスワード</label><span class="small text-secondary"> (未入力の場合，[更新]してもパスワードは変更されません)</span>
+    <%= f.password_field :password, placeholder: "半角英数字とアンダースコアで8文字以上", class: "form-control" %>
   </div>
   
   <div class="form_group mt-3">
     <label class="h5">新しいパスワード(確認用)</label>
-    <%= f.password_field  :password_confirmation, class: "form-control" %>
+    <%= f.password_field  :password_confirmation, placeholder: "確認のために同じパスワードを入力", class: "form-control" %>
   </div>
   
   <div class="form_group mt-3">
