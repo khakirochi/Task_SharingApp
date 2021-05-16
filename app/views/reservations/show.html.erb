@@ -1,0 +1,46 @@
+<h1>予約詳細</h1>
+<div>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">予約者</label></div>
+    <div class="col-md-9"><%= @reservation.user.user_name %></div>
+  </div>
+  <div class="row border-bottom py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">ルーム名</label></div>
+    <div class="col-md-9"><%= @reservation.room.room_name %></div>
+  </div>
+    <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">宿泊人数</label></div>
+    <div class="col-md-9"><%= @reservation.total_users %></div>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">開始日</label></div>
+    <div class="col-md-9"><%= @reservation.start_date.to_s(:date_jp) %></div>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">終了日</label></div>
+    <div class="col-md-9"><%= @reservation.end_date.to_s(:date_jp) %></div>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">予約確定日</label></div>
+    <div class="col-md-9"><%= @reservation.created_at.to_s(:datetime_jp) %></div>
+  </div>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h5 font-weight-bold">利用料(1日)</label></div>
+    <div class="col-md-9">&yen;<%= @reservation.room.room_fee %></div>
+  </div>
+  <hr>
+  <div class="row py-3">
+    <div class="col-md-3"><label class="h3 font-weight-bold">合計金額</label></div>
+    <div class="col-md-9">&yen;<%= @reservation.total_fee %></div>
+  </div>
+</div>
+
+<hr>
+
+<%= link_to "予約履歴一覧に戻る", reservations_path, class: "btn btn-secondary" %>
+<% if session[:user_id].present? && session[:user_id] == @reservation.user_id %>
+  <div class="text-right">
+    <%= link_to "予約を削除する", reservation_path, method: "delete", 
+        data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+  </div>
+<% end %>      

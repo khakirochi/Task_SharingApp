@@ -1,0 +1,43 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="navbar-brand">
+    <a href="/">宿泊予約サービスアプリ</a>
+  </div>
+  <div>
+    <%= form_with method: "get", url:rooms_path, local: true do |f| %>
+    <div class="form-row">
+      <div class="col-md-4">
+        <%= f.text_field :area, placeholder: "エリア", class: "form-control" %>
+      </div>
+      <div class="col-md-4">
+        <%= f.text_field  :keyword, placeholder: "キーワード", class: "form-control" %>
+      </div>
+      <div class="col">
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      </div>
+    </div>
+    <%end%>
+  </div>
+    
+  <div>
+    <% if session[:user_id].present? %>
+      <% user = User.find(session[:user_id])%>
+      <div class="nav-item dropdown">
+        <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="header_user_name"><%= user.user_name %></span>
+          <img src="<%= user.user_img.url %>" alt= "メニュー" class="rounded-circle header_user_img">
+        </div>
+        <div class="dropdown-menu dropdown-menu-right" >
+          <a class="dropdown-item" href="<%= settings_path %>">設定</a>
+          <a class="dropdown-item" href="<%= new_room_path %>">ルーム登録</a>
+          <a class="dropdown-item" href="<%= reservations_path %>">予約情報一覧</a>
+          <a class="dropdown-item" href="<%= myrooms_path %>">登録済みルーム一覧</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= signout_path %>">ログアウト</a>
+        </div>
+      </div>
+    <% else %>
+      <%= link_to "ログイン", signin_path, class: "btn btn-outline-primary" %>
+      <%= link_to "登録する", signup_path, class:"btn btn-outline-secondary" %>
+    <% end %>
+  </div>
+</nav>

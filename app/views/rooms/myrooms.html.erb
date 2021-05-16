@@ -1,0 +1,17 @@
+<h1>登録済みルーム一覧</h1>
+<table class="table table-striped">
+  <tr>
+    <th>ルーム名</th>
+    <th>住所</th>
+    <th>価格</th>
+    <th>詳細</th>
+  </tr>
+  <% @myrooms.each do |room| %>
+  <tr>
+    <td><%= room.room_name %></td>
+    <td><%= room.room_address %></td>
+    <td>&yen;<%= room.room_fee%></td>
+    <td><%= link_to "詳細", room_path(room), class: "btn btn-info" %></td>
+  </tr>
+  <% end %>
+</table>

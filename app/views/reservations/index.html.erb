@@ -1,0 +1,21 @@
+<h1>予約履歴一覧</h1>
+<table class="table table-striped table-condensed">
+  <tr>
+    <th>予約者</th>
+    <th>ルーム名</th>
+    <th>開始日</th>
+    <th>終了日</th>
+    <th>詳細</th>
+  </tr>
+  <% @reservations.each do |reservation| %>
+  <tr>
+    <td><%= reservation.user.user_name %></td>
+    <td><%= link_to reservation.room.room_name , room_path(reservation.room.id) %></td>
+    <td><%= reservation.start_date %></td>
+    <td><%= reservation.end_date %></td>
+    <td>
+    <%= link_to "詳細", reservation, class: "btn btn-info"%>  
+    </td>
+  </tr>
+  <% end %>
+</table>
